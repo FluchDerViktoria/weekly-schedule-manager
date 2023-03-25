@@ -3,13 +3,13 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <Platforms>AnyCPU;x86;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
     <Reference Include="FluchDerVika.Wpf.Essentials">
-      <HintPath>..\Librarys\FluchDerVika.Wpf.Essentials.v1.1.dll</HintPath>
+      <HintPath>..\Librarys\FluchDerVika.Wpf.Essentials.dll</HintPath>
     </Reference>
   </ItemGroup>
 

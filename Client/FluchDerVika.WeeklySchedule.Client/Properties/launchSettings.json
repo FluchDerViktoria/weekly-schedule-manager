@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "FluchDerVika.WeeklySchedule.Client": {
+      "commandName": "Project"
+    },
+    "Client: Fullscreen": {
+      "commandName": "Project",
+      "commandLineArgs": "/forcefullscreen",
+      "remoteDebugEnabled": false
+    }
+  }
+}

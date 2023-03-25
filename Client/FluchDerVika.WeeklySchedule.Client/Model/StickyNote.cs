@@ -23,6 +23,12 @@ namespace FluchDerVika.WeeklySchedule.Client.Model
       set => SetProperty(value);
     }
 
+    public DateTime Date
+    {
+      get => GetProperty<DateTime>();
+      set => SetProperty(value);
+    }
+
     #endregion Properties
     public StickyNote() 
     { 

@@ -21,10 +21,62 @@ namespace FluchDerVika.WeeklySchedule.Client.View
   /// </summary>
   public partial class MainWindow : Window
   {
-    public MainWindow()
+
+    // State of Window before Fullscreen
+    private WindowState _prevWindowState;
+
+
+    public bool IsFullscreen
+    {
+      get => WindowStyle == WindowStyle.None;
+    }
+
+    public MainWindow(bool forceFullscreen = false)
     {
       DataContext = new MainViewModel();
       InitializeComponent();
+
+      // Init current state of window
+      _prevWindowState = WindowState;
+
+      // Force full screen, if requested
+      if (forceFullscreen && !IsFullscreen)
+        ToggleFullScreen();
+    }
+
+
+    private void Window_KeyDown(object sender, KeyEventArgs e)
+    {
+      if (e.IsRepeat)
+        return;
+
+      switch(e.Key)
+      {
+        case Key.F11:
+          ToggleFullScreen();
+          break;
+      }
+    }
+
+    private void ToggleFullScreen()
+    {
+      if (!IsFullscreen)
+      {
+        // Save current state of window
+        _prevWindowState = WindowState;
+
+        // Set Fullscreen
+        WindowStyle = WindowStyle.None;
+        ResizeMode = ResizeMode.NoResize;
+        WindowState = WindowState.Maximized;
+      }
+      else
+      {
+        // Restore Fullscreen
+        WindowStyle = WindowStyle.ThreeDBorderWindow;
+        ResizeMode = ResizeMode.CanResize;
+        WindowState = _prevWindowState;
+      }
     }
   }
 }

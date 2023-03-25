@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluchDerVika.WeeklySchedule.Client.View;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,23 @@ namespace FluchDerVika.WeeklySchedule.Client
   /// </summary>
   public partial class App : Application
   {
+    protected override void OnStartup(StartupEventArgs e)
+    {
+      base.OnStartup(e);
+
+      // Get Settings from command parameters
+      bool forceFullscreen = false;
+
+      for(int i = 0; i < e.Args.Length; i++)
+      {
+        if (e.Args[i] == null)
+          continue;
+        if (e.Args[i].ToLowerInvariant() == "/forcefullscreen")
+          forceFullscreen = true;
+      }
+
+      MainWindow = new MainWindow(forceFullscreen);
+      MainWindow.Show();
+    }
   }
 }
