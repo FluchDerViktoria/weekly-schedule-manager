@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace FluchDerVika.WeeklySchedule.Client.ViewModel
 {
@@ -46,6 +47,8 @@ namespace FluchDerVika.WeeklySchedule.Client.ViewModel
       _collectionViewSource.Source = SharedData.StickyNotes;
       _collectionViewSource.Filter += CollectionViewSource_Filter;
 
+      InitCommands();
+
     }
 
     private void CollectionViewSource_Filter(object sender, FilterEventArgs e)
@@ -60,5 +63,25 @@ namespace FluchDerVika.WeeklySchedule.Client.ViewModel
       e.Accepted = stickyNote.Date.GetStartOfWeek() == SharedData.SelectedWeek.GetStartOfWeek()
             && stickyNote.Date.DayOfWeek == DayOfWeek;
     }
+
+    #region Commands
+
+    private void InitCommands()
+    {
+      SelectStickyNoteCommand = new RelayCommand(SelectStickyNote);
+    }
+
+    public ICommand SelectStickyNoteCommand { get; set; }
+
+    public void SelectStickyNote(object obj)
+    {
+      StickyNote note = obj as StickyNote;
+      if (note == null)
+        return;
+
+      SharedData.SelectedNote = note;
+    }
+
+    #endregion Commands
   }
 }

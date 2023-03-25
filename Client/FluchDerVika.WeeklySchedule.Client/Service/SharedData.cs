@@ -28,6 +28,19 @@ namespace FluchDerVika.WeeklySchedule.Client.Service
 			set => SetProperty(value);
 		}
 
+		public StickyNote SelectedNote
+		{
+			get => GetProperty<StickyNote>();
+			set
+			{
+				if (SelectedNote != null)
+					SelectedNote.IsSelected = false;
+				value.IsSelected = true;
+
+				SetProperty(value);
+			}
+		}
+
 		public SharedData()
 		{
 			StickyNotes = new();

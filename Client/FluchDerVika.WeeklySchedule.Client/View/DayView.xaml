@@ -5,9 +5,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FluchDerVika.WeeklySchedule.Client.View" 
              xmlns:vm="clr-namespace:FluchDerVika.WeeklySchedule.Client.ViewModel" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+             xmlns:essentials="clr-namespace:FluchDerVika.Wpf.Essentials;assembly=FluchDerVika.Wpf.Essentials" 
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
              d:DataContext="{d:DesignInstance Type=vm:DayViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+  <UserControl.Resources>
+    <essentials:BindingProxy Data="{Binding}" x:Key="Proxy"/>
+    
+    <!-- System Values -->
+    <sys:Boolean x:Key="True">True</sys:Boolean>
+    <!-- Styles BorderThickness="1" BorderBrush="Gray" Margin="3" Padding="3,3,3,3" MinHeight="120" CornerRadius="10" -->
+    <Style x:Key="StickyNoteBorderStyle" TargetType="{x:Type Border}">
+      <Setter Property="Background" Value="Green"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="Gray"/>
+      <Setter Property="Margin" Value="3"/>
+      <Setter Property="Padding" Value="3"/>
+      <Setter Property="MinHeight" Value="120"/>
+      <Setter Property="CornerRadius" Value="10"/>
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding IsSelected}" Value="{StaticResource True}">
+          <Setter Property="Background" Value="Yellow"/>
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+  </UserControl.Resources>
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="40"/>
@@ -25,10 +49,14 @@
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
           <DataTemplate>
-            <Border BorderThickness="1" BorderBrush="Gray" Margin="3" Background="Green" Padding="3,3,3,3" MinHeight="120" CornerRadius="10">
+            <Border x:Name="StickyNoteBorder" Style="{StaticResource StickyNoteBorderStyle}">
+              <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown" SourceObject="{Binding ElementName=StickyNoteBorder}">
+                  <i:InvokeCommandAction Command="{Binding Data.SelectStickyNoteCommand, Source={StaticResource Proxy}}" CommandParameter="{Binding}" />
+                </i:EventTrigger>
+              </i:Interaction.Triggers>
               <StackPanel Orientation="Vertical">
-                <TextBlock Text="{Binding Name}"/>
-                <TextBlock Text="{Binding Date.DayOfWeek}"/>
+                <TextBlock Text="{Binding Name}" TextWrapping="Wrap"/>
               </StackPanel>
             </Border>
           </DataTemplate>

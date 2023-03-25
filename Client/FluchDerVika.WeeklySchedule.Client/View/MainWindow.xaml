@@ -41,7 +41,7 @@
       </Grid>
     </Grid>
     <!-- #endregion Header -->
-    <!-- #region Test -->
+    <!-- #region Body -->
     <Grid Grid.Row="1">
       <ItemsControl ItemsSource="{Binding DayViewModels}">
         <ItemsControl.ItemsPanel>
@@ -55,46 +55,6 @@
           </DataTemplate>
         </ItemsControl.ItemTemplate>
       </ItemsControl>
-    </Grid>
-    <!-- #endregion Test -->
-    <!-- #region Body -->
-    <Grid Grid.Row="1" Visibility="Collapsed">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="60"/>
-        <RowDefinition Height="*"/>
-      </Grid.RowDefinitions>
-      <Grid Grid.Row="0" >
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition/>
-          <ColumnDefinition/>
-          <ColumnDefinition/>
-          <ColumnDefinition/>
-          <ColumnDefinition/>
-          <ColumnDefinition/>
-          <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1">
-          <TextBlock Text="{x:Static prop:LanguageText.WEEK_MONDAY}"/>
-        </Border>
-        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1">
-          <TextBlock Text="{x:Static prop:LanguageText.WEEK_TUESDAY}"/>
-        </Border>
-        <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1">
-          <TextBlock Text="{x:Static prop:LanguageText.WEEK_WEDNESDAY}"/>
-        </Border>
-        <Border Grid.Column="3"  BorderBrush="Black" BorderThickness="1">
-          <TextBlock Text="{x:Static prop:LanguageText.WEEK_THURSDAY}"/>
-        </Border>
-        <Border Grid.Column="4"  BorderBrush="Black" BorderThickness="1">
-          <TextBlock Text="{x:Static prop:LanguageText.WEEK_FRIDAY}"/>
-        </Border>
-        <Border Grid.Column="5" BorderBrush="Black" BorderThickness="1">
-          <TextBlock Text="{x:Static prop:LanguageText.WEEK_SATURDAY}"/>
-        </Border>
-        <Border Grid.Column="6" BorderBrush="Black" BorderThickness="1">
-          <TextBlock Text="{x:Static prop:LanguageText.WEEK_SUNDAY}"/>
-        </Border>
-      </Grid>
     </Grid>
     <!-- #endregion Body -->
   </Grid>
